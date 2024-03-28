@@ -1,0 +1,5 @@
+if(EXISTS "/Users/bradleycrouch/SimpleJson/cmake-build-debug/UnitTestJson[1]_tests.cmake")
+  include("/Users/bradleycrouch/SimpleJson/cmake-build-debug/UnitTestJson[1]_tests.cmake")
+else()
+  add_test(UnitTestJson_NOT_BUILT UnitTestJson_NOT_BUILT)
+endif()

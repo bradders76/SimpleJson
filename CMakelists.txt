@@ -25,7 +25,8 @@ if(NOT googletest_POPULATED)
 	add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-add_library(JSon src/JSON_Proxy.cpp
+add_library(JSon
+		src/JSON_Proxy.cpp
 		src/JSON_Object.cpp
 		src/JSON_Array.cpp
 		src/JSON_Null.cpp
@@ -46,10 +47,16 @@ add_library(JSon src/JSON_Proxy.cpp
 		include/JSON_Parser.hpp
 		include/StringUtils.hpp)
 
-add_executable(TestHarness TestHarness/TestHarness.cpp
+add_executable(TestHarness
+		TestHarness/TestHarness.cpp
 		include/JSON.hpp)
 
-add_executable(UnitTestJson UnitTests/JSON_UnitTest.cpp
+add_executable(UnitTestJson
+		UnitTests/UnitTest_StringUtils.cpp
+		UnitTests/UnitTest_JSON_Null.cpp
+		UnitTests/UnitTest_JSON_Boolean.cpp
+		UnitTests/UnitTest_JSON_Number.cpp
+		UnitTests/UnitTest_Mock_JSON_Item.hpp
 		include/JSON.hpp)
 
 target_link_libraries(TestHarness	JSon)
