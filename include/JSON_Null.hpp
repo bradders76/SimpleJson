@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonNull
+// JSON_Null
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,11 +11,11 @@
 #ifndef JSON_NULL_HPP
 #define JSON_NULL_HPP
 
-#include "BaseItem.hpp"
+#include "JSON_baseItem.hpp"
 
 namespace SimpleJSon
 {
-    class JSonNull : public BaseJsonItem
+    class JSON_Null : public JSON_BaseItem
     {
         public:
             std::string ToString(int depth, bool pretty) override;

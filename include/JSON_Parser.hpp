@@ -12,11 +12,11 @@
 #define JSON_PARSER_HPP
 
 #include <memory>
-#include "BaseItem.hpp"
+#include "JSON_baseItem.hpp"
 
 namespace SimpleJSon
 {
-    void ParseJson(std::string inString, std::shared_ptr<IJSonItem> &head);
+    void ParseJson(std::string inString, std::shared_ptr<IJSON_Item> &head);
 }
 
 #endif

@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonObject
+// JSON_Object
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -8,21 +8,21 @@
 // JSon Object class
 //
 
-#include "../include/JSonObject.hpp"
+#include "../include/JSON_Object.hpp"
 #include "../include/StringUtils.hpp"
 #include <iostream>
 #include <utility>
 
 namespace SimpleJSon
 {
-    void JSonObject::AddItem(const std::string& id, std::shared_ptr<IJSonItem> pItem)
+    void JSON_Object::AddItem(const std::string& id, std::shared_ptr<IJSON_Item> pItem)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
         m_map[id] = std::move(pItem);
     }
 
-    bool JSonObject::Exists(const std::string& index)
+    bool JSON_Object::Exists(const std::string& index)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
@@ -31,7 +31,7 @@ namespace SimpleJSon
 
     std::string ToString(int depth, bool pretty = false);
 
-    std::shared_ptr<IJSonItem>& JSonObject::operator[](const std::string &id)
+    std::shared_ptr<IJSON_Item>& JSON_Object::operator[](const std::string &id)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
@@ -43,7 +43,7 @@ namespace SimpleJSon
         throw std::runtime_error("Not Defined");
     }
 
-    std::string JSonObject::ToString(int depth, bool pretty)
+    std::string JSON_Object::ToString(int depth, bool pretty)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 

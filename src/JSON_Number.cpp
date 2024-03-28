@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonNumber
+// JSON_Number
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -8,18 +8,18 @@
 // JSon Number class
 //
 
-#include "../include/JSonNumber.hpp"
+#include "../include/JSON_Number.hpp"
 
 namespace SimpleJSon
 {
-    JSonNumber::JSonNumber(double val): m_value(val)
+    JSON_Number::JSON_Number(double val): m_value(val)
     {
 
     }
 
-    void JSonNumber::GetValue(double &val){val = m_value;}
+    void JSON_Number::GetValue(double &val){ val = m_value;}
 
-    std::string JSonNumber::ToString(int depth, bool pretty)
+    std::string JSON_Number::ToString(int depth, bool pretty)
     {
         return std::to_string(m_value);
     }

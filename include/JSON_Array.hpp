@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonArray
+// JSON_Array
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,29 +11,29 @@
 #ifndef JSON_ARRAY_HPP
 #define JSON_ARRAY_HPP
 
-#include "IJSonItem.hpp"
-#include "JSonNull.hpp"
+#include "IJSON_item.hpp"
+#include "JSON_Null.hpp"
 
 #include <map>
 #include <memory>
 
 namespace SimpleJSon
 {
-    class JSonArray :  public BaseJsonItem
+    class JSON_Array : public JSON_BaseItem
     {
         private:
             std::mutex m_mtx;
 
-            std::map<unsigned short, std::shared_ptr<IJSonItem> > m_array;
+            std::map<unsigned short, std::shared_ptr<IJSON_Item> > m_array;
         
         public:
-            void AddItem(unsigned short index, std::shared_ptr<IJSonItem> pItem);
+            void AddItem(unsigned short index, std::shared_ptr<IJSON_Item> pItem);
                     
             bool Exists(unsigned short index) override;
         
             std::string ToString(int depth, bool pretty) override;
             
-            std::shared_ptr<IJSonItem>& operator[](unsigned short index) override;
+            std::shared_ptr<IJSON_Item>& operator[](unsigned short index) override;
     };
 }
 

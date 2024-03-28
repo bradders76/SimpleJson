@@ -14,12 +14,12 @@
 #include <iostream>
 #include <memory>
 #include <type_traits>
-#include "JSonNull.hpp"
-#include "JSonObject.hpp"
-#include "JSonArray.hpp"
-#include "JSonNumber.hpp"
-#include "JSonBoolean.hpp"
-#include "JSonString.hpp"
+#include "JSON_Null.hpp"
+#include "JSON_Object.hpp"
+#include "JSON_Array.hpp"
+#include "JSON_Number.hpp"
+#include "JSON_Boolean.hpp"
+#include "JSON_String.hpp"
 
 namespace SimpleJSon
 {
@@ -27,9 +27,9 @@ namespace SimpleJSon
     {
     private:
         std::mutex                      m_mtx;
-        std::shared_ptr<IJSonItem>      m_pItem;
-        std::shared_ptr<JSonArray>      m_pParentArray;
-        std::shared_ptr<JSonObject>     m_pParentObject;
+        std::shared_ptr<IJSON_Item>      m_pItem;
+        std::shared_ptr<JSON_Array>      m_pParentArray;
+        std::shared_ptr<JSON_Object>     m_pParentObject;
         std::string                     m_parentKey;
         unsigned short                  m_parentIndex;
 
@@ -37,25 +37,25 @@ namespace SimpleJSon
 
     public:
 
-        static std::shared_ptr<IJSonItem> CreateBlankHead()
+        static std::shared_ptr<IJSON_Item> CreateBlankHead()
         {
             return nullptr;
         }
 
 
-        explicit JsonProxy(std::shared_ptr<IJSonItem> item);
+        explicit JsonProxy(std::shared_ptr<IJSON_Item> item);
 
-        JsonProxy(std::shared_ptr<IJSonItem> item,
-                  std::shared_ptr<JSonObject> parentObject,
+        JsonProxy(std::shared_ptr<IJSON_Item> item,
+                  std::shared_ptr<JSON_Object> parentObject,
                   std::string parentKey
                   ) ;
 
-        JsonProxy(std::shared_ptr<IJSonItem> item,
-                  std::shared_ptr<JSonArray> parentArray,
+        JsonProxy(std::shared_ptr<IJSON_Item> item,
+                  std::shared_ptr<JSON_Array> parentArray,
                   unsigned short parentIndex
         ) ;
 
-        JsonProxy& operator=(const std::shared_ptr<IJSonItem>& jsonItem);
+        JsonProxy& operator=(const std::shared_ptr<IJSON_Item>& jsonItem);
 
         template<typename T>
         JsonProxy& operator=(T item)
@@ -69,15 +69,15 @@ namespace SimpleJSon
             {
                 if constexpr (std::is_same_v<T, std::string> || std::is_same_v<T, const char*> || std::is_same_v<T, char*> || std::is_same_v<T, char[]>)
                 {
-                    m_pItem = std::make_shared<JSonString>(std::string(value));
+                    m_pItem = std::make_shared<JSON_String>(std::string(value));
                 }
                 else if constexpr (std::is_same_v<T, double> || std::is_same_v<T, float> || std::is_same_v<T, int> || std::is_same_v<T, long>)
                 {
-                    m_pItem = std::make_shared<JSonNumber>(value);
+                    m_pItem = std::make_shared<JSON_Number>(value);
                 }
                 else if constexpr (std::is_same_v<T, bool>)
                 {
-                    m_pItem = std::make_shared<JSonBoolean>(value);
+                    m_pItem = std::make_shared<JSON_Boolean>(value);
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace SimpleJSon
         void GetValue(T &value)
             {
             
-                std::shared_ptr<IJSonItem> item;
+                std::shared_ptr<IJSON_Item> item;
                 
                 if(m_pParentArray != nullptr)
                 {
@@ -125,7 +125,7 @@ namespace SimpleJSon
 
         operator std::string() const;
 
-        [[nodiscard]] std::shared_ptr<IJSonItem> GetItem() const;
+        [[nodiscard]] std::shared_ptr<IJSON_Item> GetItem() const;
     };
 }
 

@@ -25,32 +25,32 @@ if(NOT googletest_POPULATED)
 	add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
-add_library(JSon     	src/JSonProxy.cpp
-			src/JSonObject.cpp
-			src/JSonArray.cpp
-			src/JSonNull.cpp	
-			src/JSonString.cpp
-			src/JSonBoolean.cpp
-			src/JSonNumber.cpp
-			src/JSonParser.cpp
-			src/StringUtils.cpp
-			include/IJSonItem.hpp
-			include/JSonProxy.hpp
-			include/JSonObject.hpp
-			include/JSonArray.hpp
-			include/JSonNull.hpp	
-			include/JSonString.hpp
-			include/JSonBoolean.hpp
-			include/JSonNumber.hpp
-		    include/JSon.hpp
-			include/JSonParser.hpp
-			include/StringUtils.hpp)
+add_library(JSon src/JSON_Proxy.cpp
+		src/JSON_Object.cpp
+		src/JSON_Array.cpp
+		src/JSON_Null.cpp
+		src/JSON_String.cpp
+		src/JSON_Boolean.cpp
+		src/JSON_Number.cpp
+		src/JSON_Parser.cpp
+		src/StringUtils.cpp
+		include/IJSON_item.hpp
+		include/JSON_Proxy.hpp
+		include/JSON_Object.hpp
+		include/JSON_Array.hpp
+		include/JSON_Null.hpp
+		include/JSON_String.hpp
+		include/JSON_Boolean.hpp
+		include/JSON_Number.hpp
+		include/JSON.hpp
+		include/JSON_Parser.hpp
+		include/StringUtils.hpp)
 
 add_executable(TestHarness TestHarness/TestHarness.cpp
-		include/JSon.hpp)
+		include/JSON.hpp)
 
-add_executable(UnitTestJson UnitTests/UnitTestJson.cpp
-		include/JSon.hpp)
+add_executable(UnitTestJson UnitTests/JSON_UnitTest.cpp
+		include/JSON.hpp)
 
 target_link_libraries(TestHarness	JSon)
 
