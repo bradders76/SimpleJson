@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-#include "../include/JSon.hpp"
+#include "../include/JSON.hpp"
 
 #include "../include/StringUtils.hpp"
 
@@ -14,7 +14,7 @@ class WhiteSpaceTest : public testing::TestWithParam<std::tuple<unsigned char, b
 class UnicodeTest : public testing::TestWithParam<std::tuple<std::string, std::string>> {
 };
 
-class MockJSonItem : public SimpleJSon::BaseJsonItem {
+class MockJSonItem : public SimpleJSon::JSON_BaseItem {
 public:
     MOCK_METHOD2(ToString, std::string(int depth, bool pretty));
     MOCK_METHOD1(GetValue, void(double &value));
@@ -23,12 +23,12 @@ public:
     MOCK_METHOD1(Exists, bool(unsigned short));
     MOCK_METHOD1(Exists, bool(const std::string&));
     
-    MOCK_METHOD1(BracketOp, std::shared_ptr<SimpleJSon::IJSonItem>&(unsigned short));
-    MOCK_METHOD1(BracketOp, std::shared_ptr<SimpleJSon::IJSonItem>&(const std::string&));
+    MOCK_METHOD1(BracketOp, std::shared_ptr<SimpleJSon::IJSON_Item> & (unsigned short));
+    MOCK_METHOD1(BracketOp, std::shared_ptr<SimpleJSon::IJSON_Item> &(const std::string&));
     
 
-    std::shared_ptr<SimpleJSon::IJSonItem>& operator[](unsigned short index){ return BracketOp(index);};
-    std::shared_ptr<SimpleJSon::IJSonItem>& operator[](const std::string& index){ return BracketOp(index);};
+    std::shared_ptr<SimpleJSon::IJSON_Item>& operator[](unsigned short index){ return BracketOp(index);};
+    std::shared_ptr<SimpleJSon::IJSON_Item>& operator[](const std::string& index){ return BracketOp(index);};
     
 };
 

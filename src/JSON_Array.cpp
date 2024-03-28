@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonArray
+// JSON_Array
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,15 +11,15 @@
 
 #include <utility>
 
-#include "../include/JSonArray.hpp"
+#include "../include/JSON_Array.hpp"
 
 namespace SimpleJSon
 {
-    std::string JSonArray::ToString(int depth, bool pretty)
+    std::string JSON_Array::ToString(int depth, bool pretty)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
-        JSonNull nullItem;
+        JSON_Null nullItem;
         
         if(m_array.empty()) return "";
         
@@ -45,7 +45,7 @@ namespace SimpleJSon
         return retString + "]";
     }
 
-    std::shared_ptr<IJSonItem>& JSonArray::operator[](unsigned short index)
+    std::shared_ptr<IJSON_Item>& JSON_Array::operator[](unsigned short index)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
@@ -57,14 +57,14 @@ namespace SimpleJSon
         throw std::runtime_error("Not Defined");
     }
 
-    void JSonArray::AddItem(unsigned short index, std::shared_ptr<IJSonItem> pItem)
+    void JSON_Array::AddItem(unsigned short index, std::shared_ptr<IJSON_Item> pItem)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
         m_array[index] = std::move(pItem);
     }
 
-    bool JSonArray::Exists(unsigned short index)
+    bool JSON_Array::Exists(unsigned short index)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 

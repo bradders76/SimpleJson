@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonBoolean
+// JSON_Boolean
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -9,15 +9,15 @@
 //
 
 
-#include "../include/JSonBoolean.hpp"
+#include "../include/JSON_Boolean.hpp"
 
 namespace SimpleJSon
 {
-    JSonBoolean::JSonBoolean(bool val): m_value(val){}
+    JSON_Boolean::JSON_Boolean(bool val): m_value(val){}
 
-    void JSonBoolean::GetValue(bool &val){val = m_value;}
+    void JSON_Boolean::GetValue(bool &val){ val = m_value;}
 
-    std::string JSonBoolean::ToString(int depth, bool pretty)
+    std::string JSON_Boolean::ToString(int depth, bool pretty)
     {
         return (m_value) ? "true" : "false";
     }

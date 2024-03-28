@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonNumber
+// JSON_Number
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,18 +11,18 @@
 #ifndef JSON_NUMBER_HPP
 #define JSON_NUMBER_HPP
 
-#include "BaseItem.hpp"
+#include "JSON_baseItem.hpp"
 
 
 namespace SimpleJSon
 {
-    class JSonNumber :  public BaseJsonItem
+    class JSON_Number : public JSON_BaseItem
     {
         private:
             double m_value;
         
         public:
-            explicit JSonNumber(double val);
+            explicit JSON_Number(double val);
 
             void GetValue(double &val) override;
             

@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <sstream>
 
-#include "../include/JSon.hpp"
+#include "../include/JSON.hpp"
 
 int main(int argc, const char * argv[])
 {

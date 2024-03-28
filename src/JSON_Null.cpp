@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonNull
+// JSON_Null
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -8,11 +8,11 @@
 // JSon Null class
 //
 
-#include "../include/JSonNull.hpp"
+#include "../include/JSON_Null.hpp"
 
 namespace SimpleJSon
 {
-    std::string JSonNull::ToString(int depth, bool pretty)
+    std::string JSON_Null::ToString(int depth, bool pretty)
     {
         return "null";
     }

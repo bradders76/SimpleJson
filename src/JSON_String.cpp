@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonString
+// JSON_String
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -8,7 +8,7 @@
 // JSon string
 //
 
-#include "../include/JSonString.hpp"
+#include "../include/JSON_String.hpp"
 #include "../include/StringUtils.hpp"
 // overkill and requires cpp 20
 //#include <format>
@@ -17,7 +17,7 @@
 
 namespace SimpleJSon
 {
-    std::string JSonString::ToString(int depth, bool pretty)
+    std::string JSON_String::ToString(int depth, bool pretty)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
@@ -25,9 +25,9 @@ namespace SimpleJSon
        return "\""+  StringUtils::StringToJsonString(m_value) + "\"";
     }
 
-    JSonString::JSonString(std::string val): m_value(std::move(val)){}
+    JSON_String::JSON_String(std::string val): m_value(std::move(val)){}
 
-    void JSonString::GetValue(std::string &val){
+    void JSON_String::GetValue(std::string &val){
         const std::lock_guard<std::mutex> lock(m_mtx);
 
         val = m_value;
