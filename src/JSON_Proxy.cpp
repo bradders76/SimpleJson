@@ -16,25 +16,25 @@
 
 
 #include <utility>
-#include "../include/JSonProxy.hpp"
+#include "../include/JSON_Proxy.hpp"
 
 namespace SimpleJSon
 {
 
-    JsonProxy::JsonProxy(std::shared_ptr<IJSonItem> item)
+    JsonProxy::JsonProxy(std::shared_ptr<IJSON_Item> item)
      : m_pItem(std::move(item)), m_pParentArray(nullptr), m_pParentObject(nullptr), m_parentIndex(0){}
 
-    JsonProxy::JsonProxy(std::shared_ptr<IJSonItem> item,
-              std::shared_ptr<JSonObject> parentObject,
+    JsonProxy::JsonProxy(std::shared_ptr<IJSON_Item> item,
+              std::shared_ptr<JSON_Object> parentObject,
               std::string parentKey
               ) : m_pItem(std::move(item)), m_pParentArray(nullptr), m_pParentObject(std::move(parentObject)), m_parentIndex(0), m_parentKey(std::move(parentKey)) {}
 
-    JsonProxy::JsonProxy(std::shared_ptr<IJSonItem> item,
-                         std::shared_ptr<JSonArray> parentArray,
+    JsonProxy::JsonProxy(std::shared_ptr<IJSON_Item> item,
+                         std::shared_ptr<JSON_Array> parentArray,
                          unsigned short parentIndex
     ) : m_pItem(std::move(item)), m_pParentArray(std::move(parentArray)), m_pParentObject(nullptr), m_parentIndex(parentIndex){}
 
-    JsonProxy& JsonProxy::operator=(const std::shared_ptr<IJSonItem>& jsonItem)
+    JsonProxy& JsonProxy::operator=(const std::shared_ptr<IJSON_Item>& jsonItem)
      {
          m_pItem = jsonItem;
          return *this;
@@ -44,22 +44,22 @@ namespace SimpleJSon
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
-        if(m_pItem == nullptr || std::dynamic_pointer_cast<JSonNull>(m_pItem)) {
-            auto object = std::make_shared<JSonObject>();
+        if(m_pItem == nullptr || std::dynamic_pointer_cast<JSON_Null>(m_pItem)) {
+            auto object = std::make_shared<JSON_Object>();
             m_pItem = object;
-            object->AddItem(key, std::make_shared<JSonNull>());
+            object->AddItem(key, std::make_shared<JSON_Null>());
 
             UpdateParentWithCurrentItem();
             return {(*m_pItem)[key], object, key};
         }
 
-        auto object = std::dynamic_pointer_cast<JSonObject>(m_pItem);
+        auto object = std::dynamic_pointer_cast<JSON_Object>(m_pItem);
         if (object == nullptr) {
             throw (std::invalid_argument("Object assigned to different type"));
         }
 
          if (!object->Exists(key)) {
-             object->AddItem(key, std::make_shared<JSonNull>());
+             object->AddItem(key, std::make_shared<JSON_Null>());
          }
 
         UpdateParentWithCurrentItem();
@@ -71,22 +71,22 @@ namespace SimpleJSon
     {
         const std::lock_guard<std::mutex> lock(m_mtx);
 
-        if(m_pItem == nullptr || std::dynamic_pointer_cast<JSonNull>(m_pItem)) {
-            auto array = std::make_shared<JSonArray>();
+        if(m_pItem == nullptr || std::dynamic_pointer_cast<JSON_Null>(m_pItem)) {
+            auto array = std::make_shared<JSON_Array>();
             m_pItem = array;
-            array->AddItem(index, std::make_shared<JSonNull>());
+            array->AddItem(index, std::make_shared<JSON_Null>());
 
             UpdateParentWithCurrentItem();
             return {(*m_pItem)[index], array, index};
         }
 
-        auto array = std::dynamic_pointer_cast<JSonArray>(m_pItem);
+        auto array = std::dynamic_pointer_cast<JSON_Array>(m_pItem);
         if (array == nullptr) {
             throw (std::invalid_argument("Array assigned to different type"));
         }
 
        if (!array->Exists(index)) {
-           array->AddItem(index, std::make_shared<JSonNull>());
+           array->AddItem(index, std::make_shared<JSON_Null>());
        }
 
         UpdateParentWithCurrentItem();
@@ -113,7 +113,7 @@ namespace SimpleJSon
         return "";
     }
 
-    std::shared_ptr<IJSonItem> JsonProxy::GetItem() const
+    std::shared_ptr<IJSON_Item> JsonProxy::GetItem() const
     {
         return m_pItem;
     }

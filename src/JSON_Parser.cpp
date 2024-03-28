@@ -11,17 +11,17 @@
 #include <memory>
 #include <iostream>
 
-#include "../include/JSonObject.hpp"
-#include "../include/JSonArray.hpp"
-#include "../include/JSonString.hpp"
-#include "../include/JSonBoolean.hpp"
-#include "../include/JSonNumber.hpp"
+#include "../include/JSON_Object.hpp"
+#include "../include/JSON_Array.hpp"
+#include "../include/JSON_String.hpp"
+#include "../include/JSON_Boolean.hpp"
+#include "../include/JSON_Number.hpp"
 #include "../include/StringUtils.hpp"
 
 
 namespace SimpleJSon
 {
-    void ParseJson(std::string inString, std::shared_ptr<IJSonItem> &head)
+    void ParseJson(std::string inString, std::shared_ptr<IJSON_Item> &head)
     {
         int size = static_cast<int>(inString.size());
         int p1 = 0;
@@ -46,14 +46,14 @@ namespace SimpleJSon
             subString =  subString.substr(1, subString.length() - 2);
 
 
-            auto object = std::make_shared<JSonObject>();
+            auto object = std::make_shared<JSON_Object>();
             auto items  = StringUtils::Split(subString, ',');
             
             for(auto &item:items)
             {
                 auto subObject = StringUtils::Split(item, ':');
                             
-                std::shared_ptr<IJSonItem> o;
+                std::shared_ptr<IJSON_Item> o;
                 
                 ParseJson(subObject[1], o);
                  
@@ -67,13 +67,13 @@ namespace SimpleJSon
         {
             subString =  subString.substr(1, subString.length() - 2);
 
-            auto array = std::make_shared<JSonArray>();
+            auto array = std::make_shared<JSON_Array>();
             auto items = StringUtils::Split(subString, ',');
             
             unsigned short cnt = 0;
             for(auto &item:items)
             {
-                std::shared_ptr<IJSonItem> o;
+                std::shared_ptr<IJSON_Item> o;
                 
                 ParseJson(item, o);
                 array->AddItem(cnt++, o);
@@ -87,23 +87,23 @@ namespace SimpleJSon
             subString =  subString.substr(1, subString.length() - 2);
             subString =  StringUtils::JsonStringToString(subString);
 
-            head = std::make_shared<JSonString>(std::string(subString));
+            head = std::make_shared<JSON_String>(std::string(subString));
         }
         else if(isdigit(c1) || c1 == '-')
         {
-            head = std::make_shared<JSonNumber>(std::stod(subString));
+            head = std::make_shared<JSON_Number>(std::stod(subString));
         }
         else if(subString == "true")
         {
-            head = std::make_shared<JSonBoolean>(true);
+            head = std::make_shared<JSON_Boolean>(true);
         }
         else if(subString == "false")
         {
-            head = std::make_shared<JSonBoolean>(false);
+            head = std::make_shared<JSON_Boolean>(false);
         }
         else if(subString == "null")
         {
-            head = std::make_shared<JSonNull>();
+            head = std::make_shared<JSON_Null>();
         }
         else{
             throw(std::invalid_argument("invalid token"));

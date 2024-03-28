@@ -1,5 +1,5 @@
 // *******************************************************
-// BaseJsonItem
+// JSON_BaseItem
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -13,11 +13,11 @@
 
 #include <memory>
 #include <string>
-#include "IJSonItem.hpp"
+#include "IJSON_item.hpp"
 
 namespace SimpleJSon
 {
-    class BaseJsonItem : public IJSonItem
+    class JSON_BaseItem : public IJSON_Item
     {
     public:
         std::string ToString(int depth) final
@@ -30,12 +30,12 @@ namespace SimpleJSon
            throw std::runtime_error("Not Defined");
        }
 
-        std::shared_ptr<IJSonItem>& operator[](unsigned short) override
+        std::shared_ptr<IJSON_Item>& operator[](unsigned short) override
         {
             throw std::runtime_error("Not Defined");
         }
 
-        std::shared_ptr<IJSonItem>& operator[](const std::string&) override
+        std::shared_ptr<IJSON_Item>& operator[](const std::string&) override
         {
             throw std::runtime_error("Not Defined");
         }
@@ -65,7 +65,7 @@ namespace SimpleJSon
             throw std::runtime_error("Not Defined");
         }
 
-        virtual ~BaseJsonItem(){};
+        virtual ~JSON_BaseItem(){};
     };
 }
 

@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonBoolean
+// JSON_Boolean
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,18 +11,18 @@
 #ifndef JSON_BOOLEAN_HPP
 #define JSON_BOOLEAN_HPP
 
-#include "BaseItem.hpp"
+#include "JSON_baseItem.hpp"
 
 namespace SimpleJSon
 {
-    class JSonBoolean :  public BaseJsonItem
+    class JSON_Boolean : public JSON_BaseItem
     {
         private:
             bool m_value;
         
         public:
 
-            explicit JSonBoolean(bool val);
+            explicit JSON_Boolean(bool val);
         
             void GetValue(bool &val) override;
         

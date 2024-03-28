@@ -1,5 +1,5 @@
 // *******************************************************
-// JSonString
+// JSON_String
 // *******************************************************
 //
 // Author: Bradley Crouch
@@ -11,20 +11,20 @@
 #ifndef JSON_STRING_HPP
 #define JSON_STRING_HPP
 
-#include "BaseItem.hpp"
+#include "JSON_baseItem.hpp"
 #include <string>
 #include <mutex>
 
 namespace SimpleJSon
 {
-    class JSonString :  public BaseJsonItem
+    class JSON_String : public JSON_BaseItem
     {
         private:
             std::mutex m_mtx;
             std::string m_value;
 
         public:
-            explicit JSonString(std::string val);
+            explicit JSON_String(std::string val);
         
             void GetValue(std::string &val) override;
             std::string ToString(int depth, bool pretty) override;
