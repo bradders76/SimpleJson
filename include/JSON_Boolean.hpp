@@ -21,13 +21,11 @@ namespace SimpleJSon
             bool m_value;
         
         public:
-
             explicit JSON_Boolean(bool val);
         
             void GetValue(bool &val) override;
         
             std::string ToString(int depth, bool pretty) override;
-            
     };
 }
 

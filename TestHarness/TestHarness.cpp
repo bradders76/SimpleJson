@@ -1,3 +1,14 @@
+// *******************************************************
+// TestHarness
+// *******************************************************
+//
+// Author: Bradley Crouch
+// Copyright: © 2024 - March - 28
+//
+// Simple TestHarness
+//
+
+
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
