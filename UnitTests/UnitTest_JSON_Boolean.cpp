@@ -24,6 +24,19 @@ TEST_P(BooleanTest,  ToStringTest)
     ASSERT_EQ(boolItem.ToString(1, true),str);
 }
 
+TEST_P(BooleanTest,  ToValueTest)
+{
+auto [str, value] = GetParam();
+
+SimpleJSon::JSON_Boolean boolItem(value);
+
+bool  val;
+boolItem.GetValue(val);
+
+ASSERT_EQ(value, val);
+
+}
+
 
 INSTANTIATE_TEST_SUITE_P(
         BooleanFunctionTests,                   // Test case name

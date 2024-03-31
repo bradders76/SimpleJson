@@ -35,15 +35,18 @@ int main(int argc, const char * argv[])
     )";
 
     try{
+        std::shared_ptr<SimpleJSon::JsonProxySettings>   settings = std::make_shared<SimpleJSon::JsonProxySettings>();
+
         // parse
         SimpleJSon::ParseJson(testString, head);
 
         // geta proxy handler, allows easy access of JSon object
-        auto proxy = SimpleJSon::JsonProxy(head);
+        auto proxy = SimpleJSon::JsonProxy(head, settings);
 
         proxy["phoneNumbers"][9]            = 1;
         proxy["phoneTest"]                  = "9999";
 
+        proxy["phoneTest2"]["test"]                  = "9999";
         auto val =  proxy["phoneNumbers"][0];
         val      = "123";
 
@@ -55,6 +58,10 @@ int main(int argc, const char * argv[])
         str = proxy["phoneNumbers"];
         std::cout << str  << std::endl;
 
+
+        settings->setBoolSetting(SimpleJSon::eAllowObjectCreation, true);
+
+        proxy["phoneTest2"]["testbrad"]                  = "9999";
 
     }
    catch (std::exception &e)

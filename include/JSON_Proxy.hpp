@@ -20,40 +20,51 @@
 #include "JSON_Number.hpp"
 #include "JSON_Boolean.hpp"
 #include "JSON_String.hpp"
+#include "JSON_Proxy_Settings.hpp"
 
 namespace SimpleJSon
 {
+
     class JsonProxy
     {
     private:
-        std::mutex                      m_mtx;
+        std::mutex                       m_mtx;
         std::shared_ptr<IJSON_Item>      m_pItem;
         std::shared_ptr<JSON_Array>      m_pParentArray;
         std::shared_ptr<JSON_Object>     m_pParentObject;
-        std::string                     m_parentKey;
-        unsigned short                  m_parentIndex;
+
+        std::string                      m_parentKey;
+        unsigned short                   m_parentIndex;
+
+        std::shared_ptr<JsonProxySettings> m_settings;
+
 
         void UpdateParentWithCurrentItem();
 
-    public:
+    protected:
+        JsonProxy(std::shared_ptr<IJSON_Item> item,
+                  std::shared_ptr<JSON_Object> parentObject,
+                  std::shared_ptr<JsonProxySettings> settings,
+                  std::string parentKey
+        ) ;
 
+        JsonProxy(std::shared_ptr<IJSON_Item> item,
+                  std::shared_ptr<JSON_Array> parentArray,
+                  std::shared_ptr<JsonProxySettings> settings,
+                  unsigned short parentIndex
+        ) ;
+
+    public:
         static std::shared_ptr<IJSON_Item> CreateBlankHead()
         {
             return nullptr;
         }
 
 
-        explicit JsonProxy(std::shared_ptr<IJSON_Item> item);
 
-        JsonProxy(std::shared_ptr<IJSON_Item> item,
-                  std::shared_ptr<JSON_Object> parentObject,
-                  std::string parentKey
-                  ) ;
+        explicit JsonProxy(std::shared_ptr<IJSON_Item> item,  std::shared_ptr<JsonProxySettings> settings = nullptr);
 
-        JsonProxy(std::shared_ptr<IJSON_Item> item,
-                  std::shared_ptr<JSON_Array> parentArray,
-                  unsigned short parentIndex
-        ) ;
+
 
         JsonProxy& operator=(const std::shared_ptr<IJSON_Item>& jsonItem);
 
@@ -81,7 +92,7 @@ namespace SimpleJSon
                 }
                 else
                 {
-                    throw std::runtime_error("Unsorted Type");
+                    throw std::runtime_error("Unsupported Type");
                 }
 
                 UpdateParentWithCurrentItem();
@@ -113,7 +124,7 @@ namespace SimpleJSon
                 }
                 else
                 {
-                    throw std::runtime_error("item not found");
+                    throw std::runtime_error("Item not found");
                 }
                 
             }

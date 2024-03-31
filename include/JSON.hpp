@@ -10,6 +10,7 @@
 #include "JSON_Array.hpp"
 #include "JSON_Object.hpp"
 #include "JSON_Parser.hpp"
+#include "JSON_Proxy_Settings.hpp"
 #include "JSON_Proxy.hpp"
 
 #endif
