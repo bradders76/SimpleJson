@@ -23,7 +23,7 @@ namespace SimpleJSon {
         std::map<int, bool> m_boolSettings;
 
     public:
-        JsonProxySettings(bool allowCreation = false)
+        JsonProxySettings(bool allowCreation = true)
         {
             m_boolSettings[eJsonProxyOptions::eAllowObjectCreation] = allowCreation;
             m_boolSettings[eJsonProxyOptions::eAllowArrayCreation] = allowCreation;
