@@ -52,6 +52,10 @@ add_executable(TestHarness
 		include/JSON.hpp)
 
 add_executable(UnitTestJson
+		UnitTests/UnitTest_JSON_Array.cpp
+		UnitTests/UnitTest_JSON_Object.cpp
+		UnitTests/UnitTest_JSON_Proxy.cpp
+		UnitTests/UnitTest_JSON_String.cpp
 		UnitTests/UnitTest_StringUtils.cpp
 		UnitTests/UnitTest_JSON_Null.cpp
 		UnitTests/UnitTest_JSON_Boolean.cpp

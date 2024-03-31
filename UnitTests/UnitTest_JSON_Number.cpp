@@ -33,6 +33,19 @@ TEST_P(NumberTest,  ToStringTest)
 }
 
 
+TEST_P(NumberTest,  ToValueTest)
+{
+    auto [str, value] = GetParam();
+
+    SimpleJSon::JSON_Number numberItem(value);
+
+    double val;
+    numberItem.GetValue(val);
+
+    ASSERT_DOUBLE_EQ( value, val);
+
+}
+
 
 INSTANTIATE_TEST_SUITE_P(
         NumberFunctionTests,                   // Test case name
