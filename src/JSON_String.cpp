@@ -19,7 +19,7 @@ namespace SimpleJSon
 {
     std::string JSON_String::ToString(int depth, bool pretty)
     {
-        const std::lock_guard<std::mutex> lock(m_mtx);
+    //    const std::lock_guard<std::mutex> lock(m_mtx);
 
        // return std::format("\"{}\"", StringUtils::StringToJsonString(m_value));
        return "\""+  StringUtils::StringToJsonString(m_value) + "\"";

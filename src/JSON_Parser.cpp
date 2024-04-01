@@ -21,7 +21,7 @@
 
 namespace SimpleJSon
 {
-    void ParseJson(std::string inString, std::shared_ptr<IJSON_Item> &head)
+    void ParseJson(const std::string &inString, std::shared_ptr<IJSON_Item> &head)
     {
         int size = static_cast<int>(inString.size());
         int p1 = 0;
@@ -33,8 +33,7 @@ namespace SimpleJSon
         
         if(p2 < p1)
         {
-            std::cout << "Its empty" << std::endl;
-            return;
+            throw(std::invalid_argument("Is empty string"));
         }
         
         auto subString  = inString.substr(p1,p2-p1 + 1);
@@ -106,7 +105,7 @@ namespace SimpleJSon
             head = std::make_shared<JSON_Null>();
         }
         else{
-            throw(std::invalid_argument("invalid token"));
+            throw(std::invalid_argument("invalid token at position: " +  std::to_string(p1 + 1)));
         }
     }
 }

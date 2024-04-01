@@ -19,7 +19,7 @@ namespace SimpleJSon {
 
     class IJSON_Item {
     public:
-        virtual std::string ToString(int depth) = 0;
+        virtual std::string ToString(int depth)   = 0;
         virtual std::string ToString(int depth, bool pretty) = 0;
 
         virtual std::shared_ptr<IJSON_Item> &operator[](unsigned short) = 0;
@@ -36,8 +36,9 @@ namespace SimpleJSon {
 
         virtual void GetValue(bool &value) = 0;
 
+        // Declare operator<< as a friend function
+         friend std::ostream& operator<<(std::ostream& os, IJSON_Item& item);
     };
-
 }
 #endif
 

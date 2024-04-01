@@ -65,7 +65,6 @@ namespace SimpleJSon
         explicit JsonProxy(std::shared_ptr<IJSON_Item> item,  std::shared_ptr<JsonProxySettings> settings = nullptr);
 
 
-
         JsonProxy& operator=(const std::shared_ptr<IJSON_Item>& jsonItem);
 
         template<typename T>
@@ -135,6 +134,10 @@ namespace SimpleJSon
         JsonProxy operator[](unsigned short index);
 
         operator std::string() const;
+
+
+        // Declare operator<< as a friend function
+        friend std::ostream& operator<<(std::ostream& os, JsonProxy& item);
 
         [[nodiscard]] std::shared_ptr<IJSON_Item> GetItem() const;
     };

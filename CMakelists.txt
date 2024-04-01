@@ -51,6 +51,10 @@ add_executable(TestHarness
 		TestHarness/TestHarness.cpp
 		include/JSON.hpp)
 
+add_executable(TestJsonParser
+		TestHarness/TestJsonParser.cpp
+		include/JSON.hpp)
+
 add_executable(UnitTestJson
 		UnitTests/UnitTest_JSON_Array.cpp
 		UnitTests/UnitTest_JSON_Object.cpp
@@ -64,6 +68,9 @@ add_executable(UnitTestJson
 		include/JSON.hpp)
 
 target_link_libraries(TestHarness	JSon)
+
+target_link_libraries(TestJsonParser	JSon)
+
 
 target_link_libraries(UnitTestJson gmock_main  pthread 	JSon)
 

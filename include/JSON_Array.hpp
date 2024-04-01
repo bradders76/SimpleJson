@@ -19,6 +19,8 @@
 
 namespace SimpleJSon
 {
+
+
     class JSON_Array : public JSON_BaseItem
     {
         private:
@@ -31,9 +33,10 @@ namespace SimpleJSon
                     
             bool Exists(unsigned short index) override;
         
-            std::string ToString(int depth, bool pretty) override;
+            std::string ToString(int depth, bool pretty)  override;
             
             std::shared_ptr<IJSON_Item>& operator[](unsigned short index) override;
+
     };
 }
 

@@ -15,9 +15,11 @@
 
 namespace SimpleJSon
 {
+
+
     std::string JSON_Array::ToString(int depth, bool pretty)
     {
-        const std::lock_guard<std::mutex> lock(m_mtx);
+        std::lock_guard<std::mutex> lock(m_mtx);
 
         JSON_Null nullItem;
         

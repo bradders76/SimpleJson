@@ -21,6 +21,17 @@
 namespace SimpleJSon
 {
 
+    std::ostream& operator<<(std::ostream& os, JsonProxy& item)
+    {
+        if(item.m_pItem == nullptr)
+        {
+            JSON_Null nullItem;
+
+            return os << nullItem.ToString(0, true);
+        }
+        return os << *item.m_pItem;
+    }
+
     JsonProxy::JsonProxy(std::shared_ptr<IJSON_Item> item,  std::shared_ptr<JsonProxySettings> settings)
      : m_pItem(std::move(item)), m_pParentArray(nullptr), m_pParentObject(nullptr), m_parentIndex(0), m_settings(std::move(settings)){
     }

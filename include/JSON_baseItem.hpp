@@ -25,7 +25,7 @@ namespace SimpleJSon
             return ToString(depth, true);
         }
 
-       std::string ToString(int depth, bool pretty) override
+        std::string ToString(int depth, bool pretty) override
        {
            throw std::runtime_error("Not Defined");
        }

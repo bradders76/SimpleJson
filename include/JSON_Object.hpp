@@ -36,6 +36,7 @@ namespace SimpleJSon
             std::string ToString(int depth, bool pretty) override;
         
             std::shared_ptr<IJSON_Item>& operator[](const std::string &id) override;
+
     };
 }
 

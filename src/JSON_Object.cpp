@@ -15,6 +15,10 @@
 
 namespace SimpleJSon
 {
+    std::ostream& operator<<(std::ostream& os, IJSON_Item& item) {
+        return os << item.ToString(0, true);
+    }
+
     void JSON_Object::AddItem(const std::string& id, std::shared_ptr<IJSON_Item> pItem)
     {
         const std::lock_guard<std::mutex> lock(m_mtx);

@@ -16,7 +16,7 @@
 
 namespace SimpleJSon
 {
-    void ParseJson(std::string inString, std::shared_ptr<IJSON_Item> &head);
+    void ParseJson(const std::string &inString, std::shared_ptr<IJSON_Item> &head);
 }
 
 #endif
