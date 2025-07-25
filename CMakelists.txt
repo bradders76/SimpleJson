@@ -78,4 +78,7 @@ enable_testing()
 include(GoogleTest)
 gtest_discover_tests(UnitTestJson)
 
-
+target_include_directories(JSon PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+)
