@@ -72,4 +72,22 @@ namespace SimpleJSon
 
         return m_array.find(index) != m_array.end();
     }
+
+    void JSON_Array::for_each_index(const std::function<void(unsigned short, std::shared_ptr<IJSON_Item>)>& fn)
+    {
+        const std::lock_guard<std::mutex> lock(m_mtx);
+
+        for (auto &item: m_array) {
+            fn(item.first, item.second);
+        }
+    }
+
+    void JSON_Array::for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn)
+    {
+        const std::lock_guard<std::mutex> lock(m_mtx);
+        for (auto &item: m_array) {
+            JSONKey key(item.first);
+            fn(key, item.second);
+        }
+    }
 }

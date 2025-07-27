@@ -37,6 +37,9 @@ namespace SimpleJSon
         
             std::shared_ptr<IJSON_Item>& operator[](const std::string &id) override;
 
+            void for_each_key(const std::function<void(const std::string&, std::shared_ptr<IJSON_Item>)>& fn) override;
+
+            void for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn)  override;
     };
 }
 

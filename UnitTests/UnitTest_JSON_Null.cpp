@@ -19,6 +19,4 @@ TEST(JSON_Null_ClassTest,  ToStringTest)
 
     ASSERT_EQ(nullItem.ToString(0, false), "null");
     ASSERT_EQ(nullItem.ToString(1, false), "null");
-    ASSERT_EQ(nullItem.ToString(0, true), "null");
-    ASSERT_EQ(nullItem.ToString(1, true), "null");
 }

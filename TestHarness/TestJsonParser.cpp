@@ -91,7 +91,41 @@ int main(int argc, const char * argv[])
         auto proxy = SimpleJSon::JsonProxy(head);
         auto item =  proxy["users"][2];
 
-        std::cout << item;
+
+
+        auto testitem =  proxy["users"][4]["name"];
+
+        auto value =  testitem.GetValue<SimpleJSon::JSON_String>();
+
+        if(value != nullptr)
+        {
+
+        }
+
+        auto fnIndex = [](unsigned short index, std::shared_ptr<SimpleJSon::IJSON_Item> item) {
+            std::cout << index << std::endl;
+        };
+
+        auto fnKey = [&fnIndex](const std::string& key, std::shared_ptr<SimpleJSon::IJSON_Item> item) {
+
+            auto proxy = SimpleJSon::JsonProxy(item);
+
+            proxy.for_each_index(fnIndex);
+
+        };
+        proxy.for_each_key(fnKey);
+
+
+        auto fnKey2 = [](const SimpleJSon::JSONKey &key, std::shared_ptr<SimpleJSon::IJSON_Item> item) {
+
+            if (std::holds_alternative<std::string>(key)) {
+                std::cout << "Key is a string: " << std::get<std::string>(key) << std::endl;
+            } else if (std::holds_alternative<unsigned short>(key)) {
+                std::cout << "Key is an index: " << std::get<unsigned short>(key) << std::endl;
+            }
+        };
+
+       item.for_each_key(fnKey2);
     }
     catch (std::exception &e)
     {

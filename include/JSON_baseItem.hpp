@@ -40,6 +40,22 @@ namespace SimpleJSon
             throw std::runtime_error("Not Defined");
         }
 
+        void for_each_key(const std::function<void(const std::string&, std::shared_ptr<IJSON_Item>)>& fn) override
+        {
+            throw std::runtime_error("for_each_key not defined on this JSON type");
+        }
+
+
+        void for_each_index(const std::function<void(unsigned short, std::shared_ptr<IJSON_Item>)>& fn) override
+        {
+            throw std::runtime_error("for_each_index not defined on this JSON type");
+        }
+
+        void for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn)  override
+        {
+            throw std::runtime_error("for_each not defined on this JSON type");
+        }
+
         bool Exists(unsigned short) override
         {
             throw std::runtime_error("Not Defined");

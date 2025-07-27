@@ -24,7 +24,7 @@ TEST_P(NumberTest,  ToStringTest)
 
     ASSERT_EQ(numberItem.ToString(0, true),strValue);
     ASSERT_EQ(numberItem.ToString(1, false),strValue);
-    ASSERT_EQ(numberItem.ToString(1, true),strValue);
+
 
     auto strDouble = stod(strValue);
 

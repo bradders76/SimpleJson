@@ -73,4 +73,21 @@ namespace SimpleJSon
     
         return retString + space + "}";
     }
+
+    void JSON_Object::for_each_key(const std::function<void(const std::string&, std::shared_ptr<IJSON_Item>)>& fn)
+    {
+        const std::lock_guard<std::mutex> lock(m_mtx);
+        for (auto &item: m_map) {
+            fn(item.first, item.second);
+        }
+    }
+
+    void JSON_Object::for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn)
+    {
+        const std::lock_guard<std::mutex> lock(m_mtx);
+        for (auto &item: m_map) {
+            JSONKey key(item.first);
+            fn(key, item.second);
+        }
+    }
 }

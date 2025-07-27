@@ -14,6 +14,7 @@
 #include <iostream>
 #include <memory>
 #include <type_traits>
+#include "IJSON_item.hpp"
 #include "JSON_Null.hpp"
 #include "JSON_Object.hpp"
 #include "JSON_Array.hpp"
@@ -21,10 +22,10 @@
 #include "JSON_Boolean.hpp"
 #include "JSON_String.hpp"
 #include "JSON_Proxy_Settings.hpp"
-
+#include "TypeHelper.h"
+#include <variant>
 namespace SimpleJSon
 {
-
     class JsonProxy
     {
     private:
@@ -64,6 +65,16 @@ namespace SimpleJSon
 
         explicit JsonProxy(std::shared_ptr<IJSON_Item> item,  std::shared_ptr<JsonProxySettings> settings = nullptr);
 
+
+        template<class T>
+        bool IsType() const{
+            return TypeHelper::IsType<T>(m_pItem);
+        }
+
+        template<class T>
+        std::shared_ptr<T> GetValue(){
+            return TypeHelper::GetValue<T>(m_pItem);
+        }
 
         JsonProxy& operator=(const std::shared_ptr<IJSON_Item>& jsonItem);
 
@@ -127,8 +138,13 @@ namespace SimpleJSon
                 }
                 
             }
-        
-        
+
+        void for_each_key(const std::function<void(const std::string&, std::shared_ptr<IJSON_Item>)>& fn);
+
+        void for_each_index(const std::function<void(unsigned short, std::shared_ptr<IJSON_Item>)>& fn);
+
+        void for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn);
+
         JsonProxy operator[](const std::string& key);
         
         JsonProxy operator[](unsigned short index);

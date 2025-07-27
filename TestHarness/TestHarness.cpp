@@ -43,6 +43,9 @@ int main(int argc, const char * argv[])
         // geta proxy handler, allows easy access of JSon object
         auto proxy = SimpleJSon::JsonProxy(head, settings);
 
+
+
+
         proxy["phoneNumbers"][9]            = 1;
         proxy["phoneTest"]                  = "9999";
 
