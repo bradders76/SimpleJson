@@ -15,6 +15,8 @@
 #include <memory>
 #include <string>
 #include <functional>
+#include <variant>
+
 namespace SimpleJSon {
 
     using JSONKey = std::variant<std::string, unsigned short>;
