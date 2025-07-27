@@ -42,7 +42,9 @@ namespace SimpleJSon {
         virtual bool Exists(const std::string &) = 0;
 
         virtual void GetValue(double &value) = 0;
-
+        virtual void GetValue(int &value) = 0;
+        virtual void GetValue(unsigned int &value) = 0;
+        virtual void GetValue(int64_t &value) = 0;
         virtual void GetValue(std::string &value) = 0;
 
         virtual void GetValue(bool &value) = 0;

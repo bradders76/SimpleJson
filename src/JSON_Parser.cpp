@@ -90,7 +90,11 @@ namespace SimpleJSon
         }
         else if(isdigit(c1) || c1 == '-')
         {
-            head = std::make_shared<JSON_Number>(std::stod(subString));
+            if (subString.find('.') != std::string::npos) {
+                head = std::make_shared<JSON_Number>(std::stod(subString));
+            } else {
+                head = std::make_shared<JSON_Number>(std::stoll(subString));
+            }
         }
         else if(subString == "true")
         {

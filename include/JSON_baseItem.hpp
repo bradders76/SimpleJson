@@ -71,6 +71,21 @@ namespace SimpleJSon
             throw std::runtime_error("Not Defined");
         }
 
+        void GetValue(int &value) override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        void GetValue(unsigned int &value) override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        void GetValue(int64_t &value) override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
         void GetValue(std::string &value) override
         {
             throw std::runtime_error("Not Defined");
