@@ -90,4 +90,20 @@ namespace SimpleJSon
             fn(key, item.second);
         }
     }
+
+    std::vector<std::shared_ptr<IJSON_Item>> JSON_Array::GetArray()
+    {
+        std::vector<std::shared_ptr<IJSON_Item>> returnArray;
+        int cnt = 0;
+        for (auto &item: m_array) {
+            while(cnt < item.first)
+            {
+                returnArray.push_back(nullptr);
+            }
+            returnArray.push_back(item.second);
+        }
+
+        return returnArray;
+    }
+
 }

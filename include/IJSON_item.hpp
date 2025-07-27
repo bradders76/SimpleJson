@@ -16,6 +16,7 @@
 #include <string>
 #include <functional>
 #include <variant>
+#include <vector>
 
 namespace SimpleJSon {
 
@@ -46,9 +47,9 @@ namespace SimpleJSon {
         virtual void GetValue(unsigned int &value) = 0;
         virtual void GetValue(int64_t &value) = 0;
         virtual void GetValue(std::string &value) = 0;
-
         virtual void GetValue(bool &value) = 0;
 
+        virtual std::vector<std::shared_ptr<IJSON_Item>> GetArray() = 0;
         // Declare operator<< as a friend function
          friend std::ostream& operator<<(std::ostream& os, IJSON_Item& item);
 

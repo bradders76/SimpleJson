@@ -40,6 +40,9 @@ namespace SimpleJSon
             void for_each_index(const std::function<void(unsigned short, std::shared_ptr<IJSON_Item>)>& fn) override;
 
             void for_each(const std::function<void(const JSONKey&, std::shared_ptr<IJSON_Item>)>& fn)  override;
+
+            std::vector<std::shared_ptr<IJSON_Item>> GetArray() override;
+
     };
 }
 

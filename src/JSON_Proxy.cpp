@@ -160,6 +160,18 @@ namespace SimpleJSon
         return m_pItem;
     }
 
+    std::vector<std::shared_ptr<IJSON_Item>> JsonProxy::GetArray()
+    {
+        auto pItem = std::dynamic_pointer_cast<JSON_Array>(m_pItem);
+
+        if(pItem != nullptr)
+        {
+            return pItem->GetArray();
+
+        }
+        return {};
+    }
+
     void JsonProxy::for_each_key(const std::function<void(const std::string&, std::shared_ptr<IJSON_Item>)>& fn)
     {
         auto pItem = std::dynamic_pointer_cast<JSON_Object>(m_pItem);

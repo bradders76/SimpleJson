@@ -11,9 +11,11 @@
 #ifndef JSON_BASE_ITEM_HPP
 #define JSON_BASE_ITEM_HPP
 
+#include "IJSON_item.hpp"
 #include <memory>
 #include <string>
-#include "IJSON_item.hpp"
+#include <vector>
+
 
 namespace SimpleJSon
 {
@@ -72,6 +74,11 @@ namespace SimpleJSon
         }
 
         void GetValue(int &value) override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        std::vector<std::shared_ptr<IJSON_Item>> GetArray() override
         {
             throw std::runtime_error("Not Defined");
         }

@@ -85,6 +85,9 @@ namespace SimpleJSon
             return *this;
         }
 
+        std::vector<std::shared_ptr<IJSON_Item>> GetArray();
+
+
         template<typename T>
         void SetValue(T value)
             {
