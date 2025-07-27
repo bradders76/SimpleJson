@@ -15,7 +15,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-
+#include <optional>
 
 namespace SimpleJSon
 {
@@ -99,6 +99,34 @@ namespace SimpleJSon
         }
 
         void GetValue(bool &value) override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        std::optional<int> AsInt()override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+        std::optional<unsigned int> AsUint() override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+        std::optional<int64_t> AsInt64() override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        std::optional<double> AsDouble() override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        std::optional<bool> AsBool() override
+        {
+            throw std::runtime_error("Not Defined");
+        }
+
+        std::optional<std::string> AsString() override
         {
             throw std::runtime_error("Not Defined");
         }

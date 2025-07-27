@@ -81,6 +81,30 @@ namespace SimpleJSon
         return std::visit([](auto&& v) -> std::string {
             return std::to_string(v);
         }, m_value);
+    }
 
+    std::optional<int> JSON_Number::AsInt()
+    {
+        int val;
+        GetValue(val);
+        return val;
+    }
+    std::optional<unsigned int> JSON_Number::AsUint()
+    {
+        unsigned int val;
+        GetValue(val);
+        return val;
+    }
+    std::optional<int64_t > JSON_Number::AsInt64()
+    {
+        int64_t val;
+        GetValue(val);
+        return val;
+    }
+    std::optional<double> JSON_Number::AsDouble()
+    {
+        double val;
+        GetValue(val);
+        return val;
     }
 }

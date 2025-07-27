@@ -21,4 +21,13 @@ namespace SimpleJSon
     {
         return (m_value) ? "true" : "false";
     }
+
+    std::optional<bool> JSON_Boolean::AsBool()
+    {
+        bool val;
+        GetValue(val);
+        return val;
+    }
+
+
 }

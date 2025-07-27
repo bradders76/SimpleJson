@@ -13,6 +13,7 @@
 
 #include "JSON_baseItem.hpp"
 #include <variant>
+#include <optional>
 
 namespace SimpleJSon
 {
@@ -32,6 +33,11 @@ namespace SimpleJSon
             void GetValue(int64_t &val) override;
             void GetValue(int &val) override;
             void GetValue(unsigned int &val) override;
+
+            std::optional<int> AsInt()override;
+            std::optional<unsigned int> AsUint()override;
+            std::optional<int64_t > AsInt64()override;
+            std::optional<double> AsDouble()override;
 
             std::string ToString(int depth, bool pretty) override;
     };

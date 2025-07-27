@@ -93,14 +93,17 @@ namespace SimpleJSon
 
     std::vector<std::shared_ptr<IJSON_Item>> JSON_Array::GetArray()
     {
+        const std::lock_guard<std::mutex> lock(m_mtx);
         std::vector<std::shared_ptr<IJSON_Item>> returnArray;
         int cnt = 0;
         for (auto &item: m_array) {
             while(cnt < item.first)
             {
                 returnArray.push_back(nullptr);
+                cnt++;
             }
             returnArray.push_back(item.second);
+            cnt++;
         }
 
         return returnArray;

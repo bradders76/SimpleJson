@@ -26,6 +26,8 @@ namespace SimpleJSon
             void GetValue(bool &val) override;
         
             std::string ToString(int depth, bool pretty) override;
+            std::optional<bool> AsBool() override;
+
     };
 }
 

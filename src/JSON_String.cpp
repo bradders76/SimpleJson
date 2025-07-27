@@ -32,5 +32,10 @@ namespace SimpleJSon
 
         val = m_value;
     }
+
+    std::optional<std::string> JSON_String::AsString()
+    {
+        return m_value;
+    }
 }
 

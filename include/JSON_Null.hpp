@@ -19,7 +19,17 @@ namespace SimpleJSon
     {
         public:
             std::string ToString(int depth, bool pretty) override;
+
+            std::optional<int> AsInt()override;
+            std::optional<unsigned int> AsUint() override;
+            std::optional<int64_t> AsInt64() override;
+            std::optional<double> AsDouble() override;
+            std::optional<bool> AsBool() override;
+            std::optional<std::string> AsString() override;
+
     };
+
+
 }
 
 #endif

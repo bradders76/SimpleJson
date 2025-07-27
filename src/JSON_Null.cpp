@@ -16,4 +16,32 @@ namespace SimpleJSon
     {
         return "null";
     }
+
+    std::optional<int> JSON_Null::AsInt()
+    {
+        return std::nullopt;
+    }
+    std::optional<unsigned int> JSON_Null::AsUint()
+    {
+        return std::nullopt;
+    }
+    std::optional<int64_t> JSON_Null::AsInt64()
+    {
+        return std::nullopt;
+    }
+
+    std::optional<double> JSON_Null::AsDouble()
+    {
+        return std::nullopt;
+    }
+
+    std::optional<bool> JSON_Null::AsBool()
+    {
+        return std::nullopt;
+    }
+    std::optional<std::string> JSON_Null::AsString()
+    {
+        return std::nullopt;
+    }
+
 }
