@@ -234,13 +234,28 @@ namespace SimpleJSon
         
         std::vector<std::string> items;
         std::string newItem;
+
         int leftBracketSquare = 0;
         int leftBracketCircle = 0;
         int leftBracketCurl = 0;
         bool inString = false;
-        for(auto c:string)
+
+
+        newItem.reserve(string.size()) ;
+
+
+        for(int i = 0; i < string.length(); i++)
         {
-            if(!inString) {
+            char c = string[i];
+
+            if(inString) {
+                if(c == '\\' && i + 1 < string.length())
+                {
+                    newItem += c;
+                    newItem += string[++i];
+                    continue;
+                }
+            }else{
                 if (c == '(') leftBracketCircle += 1;
                 if (c == ')') leftBracketCircle -= 1;
                 if (c == '[') leftBracketSquare += 1;
@@ -248,19 +263,20 @@ namespace SimpleJSon
                 if (c == '{') leftBracketCurl += 1;
                 if (c == '}') leftBracketCurl -= 1;
             }
+
             if(c == '"') inString = !inString;
 
             // error leftBracketSquare or leftBracketCircle < 0
-            
+
             if(c == sep && leftBracketCircle == 0 && leftBracketSquare == 0 && leftBracketCurl == 0 && !inString)
             {
-                
-                items.push_back(Trim(newItem));
+                items.emplace_back(Trim(newItem));
                 newItem = "";
             }else{
                 newItem += c;
             }
         }
+
         items.push_back(Trim(newItem));
         return items;
     }
