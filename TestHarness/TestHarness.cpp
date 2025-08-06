@@ -23,8 +23,7 @@ int main(int argc, const char * argv[])
 
     std::string testString = R"(
         {
-            "name": "John Doe",
-            "age": 30,
+            "name":"\nJohn Doe","age": 30,
             "isEmployed": true,
             "address": {
                 "city": "New York",
@@ -34,11 +33,14 @@ int main(int argc, const char * argv[])
         }
     )";
 
+    std::string testString2 = R"({"asset":{"generator":"a,b","version":"2.0"}})";
+
     try{
         std::shared_ptr<SimpleJSon::JsonProxySettings>   settings = std::make_shared<SimpleJSon::JsonProxySettings>();
 
         // parse
-        SimpleJSon::ParseJson(testString, head);
+        SimpleJSon::ParseJson(testString2, head);
+        std::cout << head << std::endl;
 
         // geta proxy handler, allows easy access of JSon object
         auto proxy = SimpleJSon::JsonProxy(head, settings);

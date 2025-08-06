@@ -237,18 +237,22 @@ namespace SimpleJSon
         int leftBracketSquare = 0;
         int leftBracketCircle = 0;
         int leftBracketCurl = 0;
-        
+        bool inString = false;
         for(auto c:string)
         {
-            if(c == '(') leftBracketCircle  += 1;
-            if(c == ')') leftBracketCircle  -= 1;
-            if(c == '[') leftBracketSquare  += 1;
-            if(c == ']') leftBracketSquare  -= 1;
-            if(c == '{') leftBracketCurl    += 1;
-            if(c == '}') leftBracketCurl    -= 1;
+            if(!inString) {
+                if (c == '(') leftBracketCircle += 1;
+                if (c == ')') leftBracketCircle -= 1;
+                if (c == '[') leftBracketSquare += 1;
+                if (c == ']') leftBracketSquare -= 1;
+                if (c == '{') leftBracketCurl += 1;
+                if (c == '}') leftBracketCurl -= 1;
+            }
+            if(c == '"') inString = !inString;
+
             // error leftBracketSquare or leftBracketCircle < 0
             
-            if(c == sep && leftBracketCircle == 0 && leftBracketSquare == 0 && leftBracketCurl == 0 )
+            if(c == sep && leftBracketCircle == 0 && leftBracketSquare == 0 && leftBracketCurl == 0 && !inString)
             {
                 
                 items.push_back(Trim(newItem));
