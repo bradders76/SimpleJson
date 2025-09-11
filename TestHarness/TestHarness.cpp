@@ -3,7 +3,7 @@
 // *******************************************************
 //
 // Author: Bradley Crouch
-// Copyright: © 2024 - March - 28
+// Copyright: © 2025
 //
 // Simple TestHarness
 //
