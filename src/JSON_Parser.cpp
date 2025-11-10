@@ -11,6 +11,7 @@
 #include <memory>
 #include <iostream>
 
+#include "../cmake-build-debug/_deps/googletest-src/googletest/include/gtest/internal/gtest-string.h"
 #include "../include/JSON_Object.hpp"
 #include "../include/JSON_Array.hpp"
 #include "../include/JSON_String.hpp"
@@ -42,42 +43,49 @@ namespace SimpleJSon
         
         if(c1 == '{' && c2 == '}')
         {
-            subString =  subString.substr(1, subString.length() - 2);
-
+            subString = StringUtils::Trim(subString.substr(1, subString.length() - 2));
 
             auto object = std::make_shared<JSON_Object>();
-            auto items  = StringUtils::Split(subString, ',');
-            
-            for(auto &item:items)
-            {
-                auto subObject = StringUtils::Split(item, ':');
-                            
-                std::shared_ptr<IJSON_Item> o;
-                
-                ParseJson(subObject[1], o);
-                 
-                auto id = subObject[0].substr(1, subObject[0].length() - 2 );
-                object->AddItem(id, o);
+
+            if (!subString.empty()) {
+
+
+
+                auto items  = StringUtils::Split(subString, ',');
+
+
+                for(auto &item:items)
+                {
+                    auto subObject = StringUtils::Split(item, ':');
+
+                    std::shared_ptr<IJSON_Item> o;
+
+                    ParseJson(subObject[1], o);
+
+                    auto id = subObject[0].substr(1, subObject[0].length() - 2 );
+                    object->AddItem(id, o);
+                }
             }
-            
             head = object;
         }
         else if(c1 == '['  && c2 == ']')
         {
-            subString =  subString.substr(1, subString.length() - 2);
+            subString =  subString = StringUtils::Trim(subString.substr(1, subString.length() - 2));
 
             auto array = std::make_shared<JSON_Array>();
-            auto items = StringUtils::Split(subString, ',');
+
+            if (!subString.empty()) {
+                auto items = StringUtils::Split(subString, ',');
             
-            unsigned short cnt = 0;
-            for(auto &item:items)
-            {
-                std::shared_ptr<IJSON_Item> o;
-                
-                ParseJson(item, o);
-                array->AddItem(cnt++, o);
+                unsigned short cnt = 0;
+                for(auto &item:items)
+                {
+                    std::shared_ptr<IJSON_Item> o;
+
+                    ParseJson(item, o);
+                    array->AddItem(cnt++, o);
+                }
             }
-          
             head = array;
         }
         else if(c1 == '\"' && c2 == '\"' )
