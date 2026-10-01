@@ -18,6 +18,9 @@
 #include <variant>
 #include <vector>
 #include <optional>
+#include <stdexcept>
+#include <cmath>
+#include <mutex>
 
 namespace SimpleJSon {
 
