@@ -10,8 +10,8 @@
 
 #include <memory>
 #include <iostream>
-
-#include "../cmake-build-debug/_deps/googletest-src/googletest/include/gtest/internal/gtest-string.h"
+#include <fstream>
+#include <sstream>
 #include "../include/JSON_Object.hpp"
 #include "../include/JSON_Array.hpp"
 #include "../include/JSON_String.hpp"
@@ -22,6 +22,17 @@
 
 namespace SimpleJSon
 {
+
+    void ParseJson(const std::filesystem::path &inPath, std::shared_ptr<IJSON_Item> &head) {
+        std::string fileContents;
+        std::ifstream file(inPath);
+        if (file.is_open()) {
+            fileContents = std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+            file.close();
+        }
+        ParseJson(fileContents, head);
+    }
+
     void ParseJson(const std::string &inString, std::shared_ptr<IJSON_Item> &head)
     {
         int size = static_cast<int>(inString.size());
